@@ -12,7 +12,7 @@
     <div id="purchases-list">
       <!-- <h1> {{ header ? header : 'Bienvenido' }} </h1> -->
       <h1> {{ header.toLocaleUpperCase() }} </h1>
-
+      <input type="text" placeholder="Agregar nuevo" v-model="newUtil">
       <ul>
         <li v-for="util in utils">
           {{ util }}
@@ -27,6 +27,7 @@
         el: '#purchases-list',
         data:{
           header: 'Listado de Utiles',
+          newUtil: '',
           utils: [
             '10 Cuadernos',
             '15 Lapices',
