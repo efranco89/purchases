@@ -13,8 +13,8 @@
       <!-- <h1> {{ header ? header : 'Bienvenido' }} </h1> -->
       <h1> {{ header.toLocaleUpperCase() }} </h1>
       <div>
-        <input type="text" placeholder="Agregar nuevo" v-model="newUtil" v-on:keyup.enter="utils.push(newUtil)">
-        <button class="btn btn-primary" v-on:click="utils.push(newUtil)">Agregar</button>
+        <input type="text" placeholder="Agregar nuevo" v-model="newUtil" @keyup.enter="addUtil">
+        <button class="btn btn-primary" @click="addUtil">Agregar</button>
       </div>
       <ul>
         <li v-for="util in utils">
@@ -36,6 +36,11 @@
             '15 Lapices',
             '5 Cajas de Colores'
           ]
+        },
+        methods: {
+          addUtil: function(){
+            this.utils.push(this.newUtil)
+          }
         }
       });
     </script>
