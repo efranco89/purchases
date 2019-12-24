@@ -19,10 +19,11 @@
         </div>
         <div v-if="status === 'edit'">
           <input type="text" placeholder="Agregar nuevo" v-model="newUtil" @keyup.enter="addUtil" >
+          <p> {{ charsLength}}/200 </p>
           <button class="btn btn-primary" @click="addUtil" :disabled="newUtil.length < 3">Guardar</button>
         </div>
         <ul>
-          <li v-for="util in utils" :class="{strikethrough : util.comprado}" @click="changeBuyStatus(util)">
+          <li v-for="util in reverseList" :class="{strikethrough : util.comprado}" @click="changeBuyStatus(util)">
             {{ util.util }}
           </li>
         </ul>
@@ -47,6 +48,14 @@
             { util: '15 Lapices', comprado: true },
             { util: '5 Cajas de Colores', comprado: false }
           ]
+        },
+        computed: {
+          charsLength: function(){
+            return this.newUtil.length;
+          },
+          reverseList: function(){
+            return this.utils.slice(0).reverse();
+          }
         },
         methods: {
           addUtil: function(){
