@@ -18,7 +18,7 @@
         </div>
         <div v-if="status === 'edit'">
           <input type="text" placeholder="Agregar nuevo" v-model="newUtil" @keyup.enter="addUtil" >
-          <button class="btn btn-primary" @click="addUtil" >Guardar</button>
+          <button class="btn btn-primary" @click="addUtil" :disabled="newUtil.length < 3">Guardar</button>
         </div>
         <ul>
           <li v-for="util in utils">
