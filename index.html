@@ -22,7 +22,7 @@
         </div>
         <ul>
           <li v-for="util in utils">
-            {{ util }}
+            {{ util.util }}
           </li>
         </ul>
         <p v-if="utils.length ===0">
@@ -42,14 +42,16 @@
           newUtil: '',
           status: 'default',
           utils: [
-            // '10 Cuadernos',
-            // '15 Lapices',
-            // '5 Cajas de Colores'
+            { util: '10 Cuadernos' },
+            { util: '15 Lapices' },
+            { util: '5 Cajas de Colores' }
           ]
         },
         methods: {
           addUtil: function(){
-            this.utils.push(this.newUtil)
+            this.utils.push({
+              util: this.newUtil
+            });
             this.newUtil = '';
           },
           changeStatus: function(newStatus){
