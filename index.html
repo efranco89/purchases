@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Listado de Utiles</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
   </head>
   <body>
 
@@ -21,7 +22,7 @@
           <button class="btn btn-primary" @click="addUtil" :disabled="newUtil.length < 3">Guardar</button>
         </div>
         <ul>
-          <li v-for="util in utils">
+          <li v-for="util in utils" :class="{strikethrough : util.comprado}" @click="changeBuyStatus(util)">
             {{ util.util }}
           </li>
         </ul>
@@ -42,21 +43,25 @@
           newUtil: '',
           status: 'default',
           utils: [
-            { util: '10 Cuadernos' },
-            { util: '15 Lapices' },
-            { util: '5 Cajas de Colores' }
+            { util: '10 Cuadernos', comprado: true  },
+            { util: '15 Lapices', comprado: true },
+            { util: '5 Cajas de Colores', comprado: false }
           ]
         },
         methods: {
           addUtil: function(){
             this.utils.push({
-              util: this.newUtil
+              util: this.newUtil,
+              comprado: false
             });
             this.newUtil = '';
           },
           changeStatus: function(newStatus){
             this.status = newStatus;
             this.newUtil = '';
+          },
+          changeBuyStatus(util){
+            util.comprado = !util.comprado;
           }
         }
       });
